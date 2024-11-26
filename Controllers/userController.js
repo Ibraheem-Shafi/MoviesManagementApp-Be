@@ -19,19 +19,18 @@ const generateVerificationCode = () => {
     return crypto.randomBytes(3).toString('hex'); // Generates a 6-digit random code
 };
 
-const generateReferralId = () => {
-    return crypto.randomBytes(4).toString('hex'); // Generates a random 8-character ID
-};
-
 // Add user function
 exports.registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // Check if user already exists
         let existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ error: "User already exists with this email" });
+            if (existingUser.isVerified) {
+                return res.status(409).json({ error: "User already exists with this email." });
+            } else {
+                return res.status(400).json({ error: "User exists but is not verified. Please verify your email." });
+            }
         }
 
         // Generate verification code
