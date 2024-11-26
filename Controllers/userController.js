@@ -113,7 +113,7 @@ exports.verifyUser = async (req, res) => {
             // Generate a JWT token
             const token = jwt.sign(
                 { id: user._id, email: user.email }, // Payload
-                process.env.JWT_SECRET,             // Secret key
+                process.env.SECRET_KEY,             // Secret key
                 { expiresIn: '1h' }                 // Token expiration
             );
 
