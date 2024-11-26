@@ -216,7 +216,7 @@ exports.resetPassword = async (req, res) => {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
         // Update the user's password and clear the reset token and expiry time
-        user.password = newPassword;
+        user.password = hashedPassword;
         user.resetPasswordToken = undefined; // Remove the reset token
         user.resetPasswordExpiry = undefined; // Remove the token expiry
 
