@@ -9,13 +9,13 @@ const Routes = require('./Routes/Router');
 const app = express();
 const server = http.createServer(app);
 
-// const corsOptions = {
-//   // origin: 'https://frontend-kappa-ten-32.vercel.app',
+const corsOptions = {
+  origin: 'https://movies-management-app-fe.vercel.app',
 //   origin: 'http://localhost:3000',
-//   credentials: true,
-// };
+  credentials: true,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(Routes);

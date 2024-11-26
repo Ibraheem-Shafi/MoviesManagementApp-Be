@@ -175,7 +175,7 @@ exports.forgotPassword = async (req, res) => {
             If you did not request a password reset, please ignore this email.
 
             Best regards,
-            The Bucks Reward Team
+            The Movies Team
             `,
         };
 
